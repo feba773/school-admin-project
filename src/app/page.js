@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -16,19 +19,24 @@ const FeatureCard = ({ icon, title, description }) => (
   </div>
 );
 
-
 const SocialIcon = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
     {children}
   </a>
 );
 
-
 export default function HomePage() {
+  const [year, setYear] = useState("");
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-gray-900 text-gray-200">
       {/* Main Hero Section -- The min-h-screen class is removed from the child div */}
-<div className="relative text-center flex flex-col items-center justify-center min-h-[80vh] px-6 overflow-hidden">        {/* Animated background glows */}
+      <div className="relative text-center flex flex-col items-center justify-center min-h-[80vh] px-6 overflow-hidden">
+        {/* Animated background glows */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob"></div>
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-indigo-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 
@@ -89,34 +97,35 @@ export default function HomePage() {
       </div>
 
       {/* --- NEWLY ADDED Footer Section --- */}
-<footer className="mt-20 bg-gray-900 border-t border-gray-800 py-12 px-6">        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            {/* Column 1: About */}
-            <div>
-                <h3 className="text-lg font-bold text-white mb-4">School Admin Portal</h3>
-                <p className="text-gray-400 text-sm">A project by Feba Thankam Moni for the Reno Platforms assignment.</p>
+      <footer className="mt-20 bg-gray-900 border-t border-gray-800 py-12 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          {/* Column 1: About */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4">School Admin Portal</h3>
+            <p className="text-gray-400 text-sm">A project by Feba Thankam Moni for the Reno Platforms assignment.</p>
+          </div>
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link href="/add-school" className="text-gray-400 hover:text-white transition-colors">Add School</Link></li>
+              <li><Link href="/show-schools" className="text-gray-400 hover:text-white transition-colors">Show Schools</Link></li>
+            </ul>
+          </div>
+          {/* Column 3: Social Media */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4">Connect</h3>
+            <div className="flex justify-center md:justify-start space-x-6">
+              <SocialIcon href="#">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" /></svg>
+              </SocialIcon>
             </div>
-            {/* Column 2: Quick Links */}
-            <div>
-                <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
-                <ul className="space-y-2">
-                    <li><Link href="/add-school" className="text-gray-400 hover:text-white transition-colors">Add School</Link></li>
-                    <li><Link href="/show-schools" className="text-gray-400 hover:text-white transition-colors">Show Schools</Link></li>
-                </ul>
-            </div>
-            {/* Column 3: Social Media */}
-            <div>
-                <h3 className="text-lg font-bold text-white mb-4">Connect</h3>
-                <div className="flex justify-center md:justify-start space-x-6">
-                    <SocialIcon href="#">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.745 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clipRule="evenodd" /></svg>
-                    </SocialIcon>
-                </div>
-            </div>
+          </div>
         </div>
         <div className="mt-8 border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} Reno Platforms Assignment. All Rights Reserved.</p>
+          <p>&copy; {year} Reno Platforms Assignment. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
-  );
-}
+
+  );}
