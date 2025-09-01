@@ -41,6 +41,13 @@ export async function POST(req) {
       `data:${image.type};base64,${base64String}`,
       { folder: "schools" }
     );
+    // filepath: src/app/api/schools/route.js
+console.log("Cloudinary config:", {
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+// ...existing code...
 
     // Save school info in MySQL
     const sqlQuery = `
